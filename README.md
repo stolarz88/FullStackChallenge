@@ -3,7 +3,7 @@
 The Boxscore is the goto widget on any sports site to get quick information about a game. ESPN, Fox Sports, theScore, and many others have solutions.
 
 Here is ESPN’s solution. They even went ahead and added pitchers info.
-![ESPN Box Score](https://dl.dropboxusercontent.com/s/jvbqjkgyspt5p5u/Screenshot%202018-07-16%2020.32.21.png "ESPN Box Score")
+![ESPN Box Score](https://dl.dropboxusercontent.com/s/jvbqjkgyspt5p5u/Screenshot%202018-07-16%2020.32.21.png 'ESPN Box Score')
 [View on ESPN's site](http://www.espn.com/mlb/boxscore?gameId=380715102)
 
 The Boxscore challenge gives you the opportunity to use newer concepts and forces you to use best practices when it comes to its design and engineering.
@@ -42,8 +42,18 @@ Links to both the NodeJS Server repo, and the React App repo.
 This Box Score is hyper-focused on consuming the API via Axios and uses Flux to control the Data Store which is the 'truth' for the UI.
 
 - All of the API consumed data could be stored in DB if needed, but we can also empower the UI to cache data if needed in our Flux > Actions. // Set to 60 seconds as proof of concept
-- `npm run start` launches the application.
+- `npm install` and `npm run start` installs the modules and launches the application.
 - Webpack / React / Flux were all set up from scratch, reducing the clutter and speeding up the overall application. (i.e. no Starter kit needed)
 - Projects employs airBnB esLint rules and uses Prettier rules to keep 'formatting' consistent.
-- Vanilla Javascript and JSX only
-- React Carbon Components added for better experience
+- Vanilla Javascript and JSX only.
+- React Carbon Components added for better experience.
+- Cache Busting and Dynamic Index generation are incuded in Webpack build. (Vendors and Main JS split up assuming HTTP2 on Server being active)
+- CSS Converted to SCSS
+
+#### Components Structure
+
+- ClientApp.jsx is the starter point which initiates our App.jsx
+- ViewBoxScore.jsx is our parent level component for the challenge
+- AppConfig.jsx holds global rules which could be used to read environment specific variables for easier deployment
+- Flux > Actions > DataFeedActions is where our API calls are launched using the globally stored API URL.
+- Flux > Store > DataFeedStore is where our API is stored after success
